@@ -1,13 +1,14 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import PokemonItem from "./PokemonItem";
 import { PokemonContext } from "../context/PokemonContext";
 
 const PokemonList = () => {
   const { pokemons } = useContext(PokemonContext);
+
   console.log(pokemons);
-  return pokemons.results ? (
+  return pokemons ? (
     <>
-      {pokemons.results.map((pokemon, index) => {
+      {pokemons.pokemons.results.map((pokemon, index) => {
         return <PokemonItem key={index} value={pokemon} />;
       })}
     </>

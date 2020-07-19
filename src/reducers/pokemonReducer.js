@@ -1,9 +1,10 @@
 export const pokemonReducer = (state, action) => {
   switch (action.type) {
-    case "FILTER_POKEMONS":
-      console.log("filtered pokemons");
-      break;
-
+    case "LOAD_STATE":
+      return {
+        ...state,
+        pokemons: action.payload,
+      };
     default:
       return state;
   }
