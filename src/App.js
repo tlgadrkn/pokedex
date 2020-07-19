@@ -1,15 +1,15 @@
 import React from "react";
+import Home from "./components/Home";
+import { PokemonContextProvider } from "./context/PokemonContext";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 function App() {
   return (
-    <Switch>
-      <Route path="/">
-        <div className="root">
-          <h1 className="text-6xl">Hello from app js</h1>
-        </div>
-      </Route>
-    </Switch>
+    <PokemonContextProvider>
+      <Switch>
+        <Route path="/" component={Home} />
+      </Switch>
+    </PokemonContextProvider>
   );
 }
 

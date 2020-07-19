@@ -5,6 +5,6 @@ export const pokemonReducer = (state, action) => {
       break;
 
     default:
-      break;
+      return state;
   }
 };
