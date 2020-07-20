@@ -1,15 +1,18 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import PokemonItem from "./PokemonItem";
 import { PokemonContext } from "../context/PokemonContext";
 
 const PokemonList = () => {
   const { pokemons } = useContext(PokemonContext);
-
   console.log(pokemons);
   return pokemons ? (
     <>
       {pokemons.pokemons.results.map((pokemon, index) => {
-        return <PokemonItem key={index} value={pokemon} />;
+        return (
+          <div className="flex flex-row">
+            <PokemonItem key={index} value={pokemon} />
+          </div>
+        );
       })}
     </>
   ) : (
