@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import Home from "./components/Home";
 import { PokemonContextProvider } from "./context/PokemonContext";
 import { ThemeProvider } from "./context/ThemeContext";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Switch, Route } from "react-router-dom";
 
 function App() {
   return (

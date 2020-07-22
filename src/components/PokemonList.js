@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import PokemonItem from "./PokemonItem";
 import { PokemonContext } from "../context/PokemonContext";
+import { Grid } from "@material-ui/core";
 
 const PokemonList = () => {
   const { pokemons } = useContext(PokemonContext);
@@ -9,9 +10,9 @@ const PokemonList = () => {
     <>
       {pokemons.pokemons.results.map((pokemon, index) => {
         return (
-          <div className="flex flex-row">
+          <Grid container direction="row" justify="center" alignItems="center">
             <PokemonItem key={index} value={pokemon} />
-          </div>
+          </Grid>
         );
       })}
     </>
