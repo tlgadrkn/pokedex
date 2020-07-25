@@ -1,23 +1,26 @@
 import React, { useContext } from "react";
-import { PokemonContext } from "../context/PokemonContext";
+import { PokemonContext, dispatch } from "../context/PokemonContext";
 import Pagination from "./Pagination";
 import Navbar from "./Navbar";
 import PokemonList from "./PokemonList";
 import { ThemeContext } from "../context/ThemeContext";
-import Container from "@material-ui/core/Container";
-import { Grid } from "@material-ui/core";
+import styled from "styled-components";
+import { Container } from "../assets/Container";
+import { GridParent } from "../assets/Grid";
 
 const Home = (props) => {
   const { isLoading } = useContext(PokemonContext);
   const { themeState } = useContext(ThemeContext);
   return !isLoading ? (
-    <Grid container direction="row" justify="center" alignItems="center">
+    <Container>
       <Navbar theme={themeState} />
-      {/* <Pagination /> */}
-      <PokemonList theme={themeState} />
-    </Grid>
+      <GridParent>
+        <PokemonList theme={themeState} />
+      </GridParent>
+      {/* <button onClick={() => dispatch({type:"LOAD_MORE", payload:})}>Load More Pokemons</button> */}
+    </Container>
   ) : (
-    <h1>Loading Pokemons...</h1>
+    <h1>Loading Pokemon...</h1>
   );
 };
 

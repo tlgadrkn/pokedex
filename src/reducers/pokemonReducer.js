@@ -5,6 +5,10 @@ export const pokemonReducer = (state, action) => {
         ...state,
         pokemons: action.payload,
       };
+    case "LOAD_MORE_POKEMONS":
+      return {
+        ...state,
+      };
     default:
       return state;
   }

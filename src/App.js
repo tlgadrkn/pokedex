@@ -4,13 +4,20 @@ import { PokemonContextProvider } from "./context/PokemonContext";
 import { ThemeProvider } from "./context/ThemeContext";
 import { BrowserRouter as Switch, Route } from "react-router-dom";
 
+import { Container } from "./assets/Container";
+
+import { GlobalStyle } from "./assets/Global";
+
 function App() {
   return (
     <ThemeProvider>
       <PokemonContextProvider>
+        <GlobalStyle />
         <Switch>
-          <Route exact path="/" render={(props) => <Home {...props} />} />
-          <Route path="/" render={() => <div>404 page not found...</div>} />
+          <Container>
+            <Route exact path="/" render={(props) => <Home {...props} />} />
+            {/* <Route path="/" render={() => <div>404 page not found...</div>} /> */}
+          </Container>
         </Switch>
       </PokemonContextProvider>
     </ThemeProvider>
