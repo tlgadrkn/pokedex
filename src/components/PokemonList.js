@@ -1,13 +1,27 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import PokemonItem from "./PokemonItem";
 import { PokemonContext } from "../context/PokemonContext";
+import { fetchDataFrom } from "../utils/fetchApi";
 
 const PokemonList = () => {
   const { pokemons } = useContext(PokemonContext);
-  console.log(pokemons);
-  return pokemons ? (
+  const [pokemonState, setPokemonState] = useState([]);
+
+  useEffect(() => {
+    async function loadPokemonData() {
+      await pokemons.then((data) => {
+        console.log(data);
+        setPokemonState(data);
+      });
+    }
+
+    loadPokemonData();
+  }, []);
+
+  console.log(pokemonState);
+  return pokemonState.pokemons ? (
     <>
-      {pokemons.pokemons.results.map((pokemon, index) => {
+      {pokemonState.pokemons.map((pokemon, index) => {
         return <PokemonItem key={index} value={pokemon} />;
       })}
     </>

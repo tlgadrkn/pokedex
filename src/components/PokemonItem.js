@@ -8,21 +8,23 @@ import { Card, CardBody, CardImg, CardSpan } from "../assets/Card";
 const PokemonItem = ({ value }) => {
   const { themeState } = useContext(ThemeContext);
   const [state, setState] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  console.log(state);
-  useEffect(() => {
-    let isMounted = true; // note this flag denote mount status
-    async function getData() {
-      fetchDataFrom(value.url).then((data) => {
-        if (isMounted) setState(data);
-        setIsLoading(false);
-      });
-    }
-    getData();
-    return () => {
-      isMounted = false;
-    }; // use effect cleanup to set flag false, if unmounted
-  }, []);
+  const [isLoading, setIsLoading] = useState("");
+  console.log(value);
+  // console.log(state);
+  // useEffect(() => {
+  //   let isMounted = true; // note this flag denote mount
+
+  //   async function getData() {
+  //     fetchDataFrom(value.url).then((data) => {
+  // if (isMounted) setState(data);
+  // setIsLoading(false);
+  // });
+  //   }
+  //   getData();
+  //   return () => {
+  //     isMounted = false;
+  //   }; // use effect cleanup to set flag false, if unmounted
+  // }, []);
 
   if (isLoading) {
     return <h1>loading...</h1>;
@@ -30,14 +32,14 @@ const PokemonItem = ({ value }) => {
   return (
     <Card>
       <CardImg>
-        <Link to={console.log("link to pokemon")}>
-          <img src={state.sprites.front_default} alt={`${state.name}`} />
+        <Link>
+          <img src={value.url} alt={`${value.name}`} />
         </Link>
       </CardImg>
       <CardBody>
-        <h3>{state.name}</h3>
+        <h3>{value.name}</h3>
         <p>
-          {state.types.map((type) => (
+          {value.types.map((type) => (
             <CardSpan>{type.type.name}</CardSpan>
           ))}
         </p>

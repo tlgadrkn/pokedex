@@ -7,20 +7,21 @@ export const PokemonContext = createContext(null);
 
 export const PokemonContextProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(true);
-  const [tempPokemons, setTempPokemons] = useState([]);
   const [pokemons, dispatch] = useReducer(
     pokemonReducer,
     useEffect(() => {
       try {
-        fetchDataFrom(POKEMON_API).then((value) => {
-          dispatch({ type: "LOAD_STATE", payload: value });
-          setIsLoading(false);
-        });
+        // fetchDataFrom(POKEMON_API).then((value) => {
+        //   console.log(value);
+        dispatch({ type: "LOAD_STATE" });
+        setIsLoading(false);
+        // });
       } catch (error) {
         throw new Error(`Fetch Error - ${error}`);
       }
     }, [])
   );
+
   return (
     <PokemonContext.Provider value={{ isLoading, pokemons, dispatch }}>
       {children}
