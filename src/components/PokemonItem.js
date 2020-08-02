@@ -33,14 +33,14 @@ const PokemonItem = ({ value }) => {
     <Card>
       <CardImg>
         <Link>
-          <img src={value.url} alt={`${value.name}`} />
+          <img src={value.sprites.front_default} alt={`${value.name}`} />
         </Link>
       </CardImg>
       <CardBody>
         <h3>{value.name}</h3>
         <p>
-          {value.types.map((type) => (
-            <CardSpan>{type.type.name}</CardSpan>
+          {value.types.map((type, index) => (
+            <CardSpan key={index}>{type.type.name}</CardSpan>
           ))}
         </p>
       </CardBody>

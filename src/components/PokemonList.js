@@ -16,7 +16,7 @@ const PokemonList = () => {
     }
 
     loadPokemonData();
-  }, []);
+  }, [pokemons]);
 
   console.log(pokemonState);
   return pokemonState.pokemons ? (

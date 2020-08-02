@@ -1,13 +1,14 @@
 import { fetchDataFrom } from "../utils/fetchApi";
-const POKEMON_API = "https://pokeapi.co/api/v2/pokemon/?offset=20&limit=20";
+const POKEMON_API = "https://pokeapi.co/api/v2/pokemon/?offset=0&limit=20";
 
 export const pokemonReducer = (state, action) => {
   console.log(action);
+  console.log(state);
   switch (action.type) {
     case "LOAD_STATE":
-      async function getPokemons() {
+      async function getPokemons(url) {
         try {
-          let response = await fetchDataFrom(POKEMON_API);
+          let response = await fetchDataFrom(url);
           // console.log(response);
           // return response;
           let allPokemons = [];
@@ -16,17 +17,18 @@ export const pokemonReducer = (state, action) => {
             allPokemons.push(temp);
           }
           console.log(allPokemons);
-          return allPokemons;
+          return {
+            pokemons: await allPokemons,
+            next: await response.next,
+            previous: await response.previous,
+          };
         } catch (error) {
           console.log(`fetch error - ${error}`);
         }
       }
-      return getPokemons().then((data) => {
+      return getPokemons(POKEMON_API).then((data) => {
         console.log(data);
-        return {
-          ...state,
-          pokemons: data,
-        };
+        return data;
       });
     // return {
     //   ...state,
@@ -38,22 +40,45 @@ export const pokemonReducer = (state, action) => {
     //   pokemons: action.payload,
     // };
     case "LOAD_MORE_POKEMONS":
-      // console.log({ ...state.pokemons, results: [...state.pokemons.results] });
+      try {
+        async function checkPromise() {
+          let loadedState = await state;
+          console.log(loadedState);
 
-      return fetchDataFrom(state.pokemons.next).then((data) => {
-        console.log(data.results);
-        console.log({ ...state });
-        const fetchedPokemons = data.results.map((pokemon) => {
+          let res = await getPokemons(loadedState.next);
+
           return {
-            name: pokemon.name,
-            url: pokemon.url,
+            next: res.next,
+            pokemons: [...loadedState.pokemons, ...res.pokemons],
+            previous: res.previous,
           };
-        });
-        return {
-          ...state,
-          pokemons: [...state.pokemons.results, data.results],
-        };
-      });
+
+          // return {
+          //   ...loadedState,
+          //   pokemons: [...loadedState.pokemons, ...data.pokemons],
+          //   next: loadedState.next,
+          //   previous: loadedState.previous,
+          // };
+        }
+        return checkPromise();
+      } catch (error) {
+        console.log(`promise error ${error}`);
+      }
+
+    // return fetchDataFrom(state.pokemons.next).then((data) => {
+    //   console.log(data.results);
+    //   console.log({ ...state });
+    //   const fetchedPokemons = data.results.map((pokemon) => {
+    //     return {
+    //       name: pokemon.name,
+    //       url: pokemon.url,
+    //     };
+    //   });
+    //   return {
+    //     ...state,
+    //     pokemons: [...state.pokemons.results, data.results],
+    //   };
+    // });
     default:
       return state;
   }
