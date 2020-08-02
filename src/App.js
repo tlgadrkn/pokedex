@@ -5,8 +5,8 @@ import { ThemeProvider } from "./context/ThemeContext";
 import { BrowserRouter as Switch, Route } from "react-router-dom";
 
 import { Container } from "./assets/Container";
-
 import { GlobalStyle } from "./assets/Global";
+import PokemonDetails from "./components/PokemonDetails";
 
 function App() {
   return (
@@ -16,6 +16,10 @@ function App() {
         <Switch>
           <Container>
             <Route exact path="/" render={(props) => <Home {...props} />} />
+            <Route
+              path="/:id"
+              render={(props) => <PokemonDetails {...props} />}
+            />
             {/* <Route path="/" render={() => <div>404 page not found...</div>} /> */}
           </Container>
         </Switch>

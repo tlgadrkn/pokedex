@@ -1,5 +1,6 @@
 import { fetchDataFrom } from "../utils/fetchApi";
 const POKEMON_API = "https://pokeapi.co/api/v2/pokemon/?offset=0&limit=20";
+const SPECIFIC_POKEMON_API = "https://pokeapi.co/api/v2/pokemon/";
 
 export const pokemonReducer = (state, action) => {
   console.log(action);
@@ -79,6 +80,7 @@ export const pokemonReducer = (state, action) => {
     //     pokemons: [...state.pokemons.results, data.results],
     //   };
     // });
+
     default:
       return state;
   }

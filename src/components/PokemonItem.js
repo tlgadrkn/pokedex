@@ -1,9 +1,10 @@
 import React, { useContext, useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import PropTypes from "prop-types";
 import { ThemeContext } from "../context/ThemeContext";
 import { fetchDataFrom } from "../utils/fetchApi";
 import { Card, CardBody, CardImg, CardSpan } from "../assets/Card";
+import { pokemonReducer } from "../reducers/pokemonReducer";
 
 const PokemonItem = ({ value }) => {
   const { themeState } = useContext(ThemeContext);
@@ -32,7 +33,12 @@ const PokemonItem = ({ value }) => {
   return (
     <Card>
       <CardImg>
-        <Link>
+        <Link
+          to={{
+            pathname: `/${value.id}`,
+            pokemon: { value },
+          }}
+        >
           <img src={value.sprites.front_default} alt={`${value.name}`} />
         </Link>
       </CardImg>
