@@ -4,7 +4,6 @@ import Pagination from "./Pagination";
 import Navbar from "./Navbar";
 import PokemonList from "./PokemonList";
 import { ThemeContext } from "../context/ThemeContext";
-import styled from "styled-components";
 import { Container } from "../assets/Container";
 import { GridParent } from "../assets/Grid";
 
@@ -14,9 +13,6 @@ const Home = (props) => {
   return !isLoading ? (
     <Container>
       <Navbar theme={themeState} />
-      <button onClick={() => dispatch({ type: "LOAD_MORE_POKEMONS" })}>
-        Load More Pokemons
-      </button>
       <GridParent>
         <PokemonList theme={themeState} />
       </GridParent>

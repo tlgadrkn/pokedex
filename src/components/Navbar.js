@@ -1,10 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
+import { PokemonContext } from "../context/PokemonContext";
+import { Nav } from "../assets/Nav";
 
 const Navbar = () => {
+  const { isLoading, dispatch } = useContext(PokemonContext);
   return (
-    <div>
-      <nav>navbar</nav>
-    </div>
+    <Nav>
+      <h2>PokeDex</h2>
+      <button onClick={() => dispatch({ type: "LOAD_MORE_POKEMONS" })}>
+        Load More Pokemons
+      </button>
+      <input type="text" placeholder="Search Pokemons..."></input>
+    </Nav>
   );
 };
 
