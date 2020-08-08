@@ -12,6 +12,9 @@ export const Nav = styled.nav`
 `;
 export const NavLogo = styled.div`
   align-self: center;
+  h2 {
+    font-size: 2rem;
+  }
 `;
 export const NavbarItems = styled.div`
   /* border: 1px solid black; */
@@ -39,10 +42,10 @@ export const NavbarInput = styled.input`
   height: 3rem;
   width: 50%;
   border-radius: 0.5rem;
-  padding: 1rem;
   border: 1px solid #8095ff;
-  padding: 0.5rem 0.25rem;
+  padding: 0.5rem 1.5rem;
   &::placeholder {
     padding: 0 1rem;
+    letter-spacing: 0.05rem;
   }
 `;

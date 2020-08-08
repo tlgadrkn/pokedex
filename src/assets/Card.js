@@ -1,5 +1,5 @@
 import styled from "styled-components";
-
+import { setSpanColor } from "../utils/helperFunctions";
 export const Card = styled.div`
   display: flex;
   padding: 1rem;
@@ -11,14 +11,21 @@ export const Card = styled.div`
   overflow: hidden;
   border-radius: 5px;
   &:hover {
-    box-shadow: 0 2px 20px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.2);
   }
 `;
 
 export const CardImg = styled.div`
+  display: flex;
+  justify-content: center;
   width: 100%;
-  object-fit: cover;
+  /* object-fit: cover; */
   overflow: hidden;
+  height: 20rem;
+  img {
+    width: 100%;
+    object-fit: cover;
+  }
 `;
 export const CardBody = styled.div`
   display: flex;
@@ -26,10 +33,16 @@ export const CardBody = styled.div`
   align-items: flex-start;
   min-height: 7.5rem;
 `;
+export const CardHeader = styled.h3`
+  /* text-transform: uppercase; */
+  line-height: 1.4;
+  margin-bottom: 1rem;
+`;
 
 export const CardSpan = styled.span`
-  padding: 0.25rem 0.5rem;
+  padding: 0.5rem 1rem;
   color: #fff;
-  background-color: #333;
-  margin: 0.1rem;
+  border-radius: 5px;
+  margin: 0.2rem;
+  background-color: ${(props) => setSpanColor(props.type)};
 `;

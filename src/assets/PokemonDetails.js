@@ -7,12 +7,12 @@ export const PokemonWrapper = styled.div`
   justify-content: space-between;
   background-image: linear-gradient(0deg, #d9afd9 0%, #97d9e1 100%);
   background-repeat: no-repeat;
-  box-shadow: 0px 4px 8px 0 rgb(206, 205, 205);
+  /* box-shadow: 0px 4px 8px 0 rgb(206, 205, 205); */
   transition: 0.3s;
   overflow: hidden;
   border-radius: 5px;
   &:hover {
-    box-shadow: 0 2px 20px 0 rgba(0, 0, 0, 0.2);
+    /* box-shadow: 0 8px 6px -6px black; */
   }
 `;
 

@@ -6,6 +6,8 @@ import {
   PokemonImg,
   SpanButton,
 } from "../assets/PokemonDetails";
+import { CardSpan } from "../assets/Card";
+import { capitalizeFirstLetter } from "../utils/helperFunctions";
 
 function PokemonDetails() {
   const location = useLocation();
@@ -13,19 +15,25 @@ function PokemonDetails() {
   return (
     <>
       <PokemonHeader>
-        <h1>{`${location.pokemon.value.name} #${location.pokemon.value.id}`}</h1>
+        <h1>{`${capitalizeFirstLetter(location.pokemon.value.name)} #${
+          location.pokemon.value.id
+        }`}</h1>
       </PokemonHeader>
       <PokemonWrapper>
         <PokemonImg
           src={`https://pokeres.bastionbot.org/images/pokemon/${location.pokemon.value.id}.png`}
-          alt=""
+          alt={location.pokemon.value.name}
         />
 
         <div className="pokemon-details">
           <p>
             Types:{" "}
             {location.pokemon.value.types.map((type, index) => {
-              return <span key={index}>{type.type.name}</span>;
+              return (
+                <CardSpan key={index} type={type.type.name}>
+                  {type.type.name}
+                </CardSpan>
+              );
             })}
           </p>
           <p>Height: {location.pokemon.value.height}</p>

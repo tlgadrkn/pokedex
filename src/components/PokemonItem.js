@@ -2,8 +2,8 @@ import React, { useContext, useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import PropTypes from "prop-types";
 import { ThemeContext } from "../context/ThemeContext";
-import { fetchDataFrom } from "../utils/fetchApi";
-import { Card, CardBody, CardImg, CardSpan } from "../assets/Card";
+import { capitalizeFirstLetter } from "../utils/helperFunctions";
+import { Card, CardBody, CardImg, CardSpan, CardHeader } from "../assets/Card";
 import { pokemonReducer } from "../reducers/pokemonReducer";
 
 const PokemonItem = ({ value }) => {
@@ -11,21 +11,6 @@ const PokemonItem = ({ value }) => {
   const [state, setState] = useState([]);
   const [isLoading, setIsLoading] = useState("");
   console.log(value);
-  // console.log(state);
-  // useEffect(() => {
-  //   let isMounted = true; // note this flag denote mount
-
-  //   async function getData() {
-  //     fetchDataFrom(value.url).then((data) => {
-  // if (isMounted) setState(data);
-  // setIsLoading(false);
-  // });
-  //   }
-  //   getData();
-  //   return () => {
-  //     isMounted = false;
-  //   }; // use effect cleanup to set flag false, if unmounted
-  // }, []);
 
   if (isLoading) {
     return <h1>loading...</h1>;
@@ -39,14 +24,23 @@ const PokemonItem = ({ value }) => {
             pokemon: { value },
           }}
         >
-          <img src={value.sprites.front_default} alt={`${value.name}`} />
+          <img
+            src={`https://pokeres.bastionbot.org/images/pokemon/${value.id}.png`}
+            alt={value.name}
+          />
+
+          {/* <img src={value.sprites.front_default} alt={`${value.name}`} /> */}
         </Link>
       </CardImg>
       <CardBody>
-        <h3>{value.name}</h3>
+        <CardHeader>
+          <h3>{capitalizeFirstLetter(value.name)}</h3>
+        </CardHeader>
         <p>
           {value.types.map((type, index) => (
-            <CardSpan key={index}>{type.type.name}</CardSpan>
+            <CardSpan key={index} type={type.type.name}>
+              {type.type.name}
+            </CardSpan>
           ))}
         </p>
       </CardBody>
