@@ -6,21 +6,32 @@ import {
   NavbarInput,
   NavbarItems,
   NavLogo,
+  NavbarLabel,
+  NavbarInputGroup,
+  NavbarInputButton,
 } from "../assets/Nav";
+import { MdSearch } from "react-icons/md";
 
 const Navbar = () => {
   const { isLoading, dispatch } = useContext(PokemonContext);
+
   return (
     <Nav>
       <NavLogo>
         <h2>PokeDex</h2>
       </NavLogo>
       <NavbarItems>
-        <NavbarInput
-          type="text"
-          name="search-pokemons"
-          placeholder="Search Pokemons..."
-        ></NavbarInput>
+        <NavbarInputGroup>
+          <NavbarLabel htmlFor="search-pokemons">Search by Name:</NavbarLabel>
+          <NavbarInput
+            type="text"
+            id="search-pokemons"
+            onChange={(e) => e}
+          ></NavbarInput>
+          <NavbarInputButton>
+            <MdSearch />
+          </NavbarInputButton>
+        </NavbarInputGroup>
         <NavbarButton onClick={() => dispatch({ type: "LOAD_MORE_POKEMONS" })}>
           Load More Pokemons
         </NavbarButton>

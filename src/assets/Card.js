@@ -30,7 +30,8 @@ export const CardImg = styled.div`
 export const CardBody = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
+  gap: 2rem;
   min-height: 7.5rem;
 `;
 export const CardHeader = styled.h3`
@@ -40,7 +41,7 @@ export const CardHeader = styled.h3`
 `;
 
 export const CardSpan = styled.span`
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 2rem;
   color: #fff;
   border-radius: 5px;
   margin: 0.2rem;

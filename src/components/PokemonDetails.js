@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, Redirect } from "react-router-dom";
 import {
   PokemonWrapper,
   PokemonHeader,
@@ -12,7 +12,7 @@ import { capitalizeFirstLetter } from "../utils/helperFunctions";
 function PokemonDetails() {
   const location = useLocation();
 
-  return (
+  return location.pokemon ? (
     <>
       <PokemonHeader>
         <h1>{`${capitalizeFirstLetter(location.pokemon.value.name)} #${
@@ -48,6 +48,8 @@ function PokemonDetails() {
         </div>
       </PokemonWrapper>
     </>
+  ) : (
+    <Redirect to="/" />
   );
 }
 

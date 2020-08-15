@@ -20,7 +20,6 @@ function App() {
               path="/:id"
               render={(props) => <PokemonDetails {...props} />}
             />
-            {/* <Route path="/" render={() => <div>404 page not found...</div>} /> */}
           </Container>
         </Switch>
       </PokemonContextProvider>

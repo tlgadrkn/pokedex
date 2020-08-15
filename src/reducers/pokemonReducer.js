@@ -31,15 +31,7 @@ export const pokemonReducer = (state, action) => {
         console.log(data);
         return data;
       });
-    // return {
-    //   ...state,
-    //   pokemons: getPokemons(),
-    // };
 
-    // return {
-    //   ...state,
-    //   pokemons: action.payload,
-    // };
     case "LOAD_MORE_POKEMONS":
       try {
         async function checkPromise() {
@@ -53,33 +45,12 @@ export const pokemonReducer = (state, action) => {
             pokemons: [...loadedState.pokemons, ...res.pokemons],
             previous: res.previous,
           };
-
-          // return {
-          //   ...loadedState,
-          //   pokemons: [...loadedState.pokemons, ...data.pokemons],
-          //   next: loadedState.next,
-          //   previous: loadedState.previous,
-          // };
         }
         return checkPromise();
       } catch (error) {
         console.log(`promise error ${error}`);
       }
-
-    // return fetchDataFrom(state.pokemons.next).then((data) => {
-    //   console.log(data.results);
-    //   console.log({ ...state });
-    //   const fetchedPokemons = data.results.map((pokemon) => {
-    //     return {
-    //       name: pokemon.name,
-    //       url: pokemon.url,
-    //     };
-    //   });
-    //   return {
-    //     ...state,
-    //     pokemons: [...state.pokemons.results, data.results],
-    //   };
-    // });
+      break;
 
     default:
       return state;
