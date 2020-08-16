@@ -26,8 +26,6 @@ export const PokemonContextProvider = ({ children }) => {
     }, [])
   );
 
-  console.log(`FROM CONTEXT ${pokemons}`);
-
   return (
     <PokemonContext.Provider value={{ isLoading, pokemons, dispatch }}>
       {children}

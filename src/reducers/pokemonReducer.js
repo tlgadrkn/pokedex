@@ -2,9 +2,8 @@ import { fetchDataFrom } from "../utils/fetchApi";
 const POKEMON_API = "https://pokeapi.co/api/v2/pokemon/?offset=0&limit=20";
 const SPECIFIC_POKEMON_API = "https://pokeapi.co/api/v2/pokemon/";
 
-export const pokemonReducer = (state, action) => {
+export const pokemonReducer = async (state, action) => {
   console.log(action);
-  console.log(state);
   switch (action.type) {
     case "LOAD_STATE":
       async function getPokemons(url) {
@@ -20,6 +19,7 @@ export const pokemonReducer = (state, action) => {
           console.log(allPokemons);
           return {
             pokemons: await allPokemons,
+            searchedPokemon: null,
             next: await response.next,
             previous: await response.previous,
           };
@@ -28,22 +28,42 @@ export const pokemonReducer = (state, action) => {
         }
       }
       return getPokemons(POKEMON_API).then((data) => {
-        console.log(data);
+        // console.log(data);
         return data;
       });
 
+    case "SEARCH_POKEMONS":
+      try {
+        let loadedState = await state;
+        let response = await fetchDataFrom(
+          `${SPECIFIC_POKEMON_API}${action.payload}`
+        );
+        console.log(action.payload);
+        console.log(response);
+        console.log(state);
+        return {
+          next: loadedState.next,
+          pokemons: [...loadedState.pokemons],
+          searchedPokemon: response,
+          previous: loadedState.previous,
+        };
+      } catch (error) {
+        console.log(`fetch error - ${error}`);
+        return state;
+      }
     case "LOAD_MORE_POKEMONS":
       try {
         async function checkPromise() {
           let loadedState = await state;
-          console.log(loadedState);
+          console.log(`LOADED STATE ${loadedState}`);
 
           let res = await getPokemons(loadedState.next);
 
           return {
             next: res.next,
             pokemons: [...loadedState.pokemons, ...res.pokemons],
-            previous: res.previous,
+            searchedPokemon: null,
+            previous: !res.previous ? null : res.previous,
           };
         }
         return checkPromise();

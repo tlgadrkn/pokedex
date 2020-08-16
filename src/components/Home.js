@@ -11,12 +11,14 @@ const Home = (props) => {
   const { isLoading, dispatch } = useContext(PokemonContext);
   const { themeState } = useContext(ThemeContext);
   return !isLoading ? (
-    <Container>
-      <Navbar theme={themeState} />
-      <GridParent>
-        <PokemonList theme={themeState} />
-      </GridParent>
-    </Container>
+    <main>
+      <Container>
+        <Navbar theme={themeState} />
+        <GridParent>
+          <PokemonList theme={themeState} />
+        </GridParent>
+      </Container>
+    </main>
   ) : (
     <h1>Loading Pokemon...</h1>
   );

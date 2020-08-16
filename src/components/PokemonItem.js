@@ -10,7 +10,7 @@ const PokemonItem = ({ value }) => {
   const { themeState } = useContext(ThemeContext);
   const [state, setState] = useState([]);
   const [isLoading, setIsLoading] = useState("");
-  console.log(value);
+  // console.log(value);
 
   if (isLoading) {
     return <h1>loading...</h1>;
@@ -33,9 +33,7 @@ const PokemonItem = ({ value }) => {
         </Link>
       </CardImg>
       <CardBody>
-        <CardHeader>
-          <h3>{capitalizeFirstLetter(value.name)}</h3>
-        </CardHeader>
+        <CardHeader>{capitalizeFirstLetter(value.name)}</CardHeader>
         <p>
           {value.types.map((type, index) => (
             <CardSpan key={index} type={type.type.name}>

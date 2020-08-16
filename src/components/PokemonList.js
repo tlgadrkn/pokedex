@@ -1,7 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import PokemonItem from "./PokemonItem";
 import { PokemonContext } from "../context/PokemonContext";
-import { fetchDataFrom } from "../utils/fetchApi";
 
 const PokemonList = () => {
   const { pokemons } = useContext(PokemonContext);
@@ -12,23 +11,39 @@ const PokemonList = () => {
       await pokemons.then((data) => {
         console.log(data);
         setPokemonState(data);
+        console.log(pokemonState);
       });
     }
 
     loadPokemonData();
   }, [pokemons]);
 
-  console.log(pokemonState);
-  return pokemonState.pokemons ? (
+  // return pokemonState.pokemons ? (
+  //   <>
+  //     {pokemonState.pokemons.map((pokemon, index) => {
+  //       return <PokemonItem key={index} value={pokemon} />;
+  //     })}
+  //   </>
+  // ) : pokemonState.searchedPokemon ? (
+  //   <PokemonItem value={pokemonState.searchedPokemon}></PokemonItem>
+  // ) : (
+  //   <div>
+  //     <p>no pokemons to list</p>
+  //   </div>
+  // );
+  console.log(Object.values(pokemonState));
+  return pokemonState.searchedPokemon ? (
+    <>
+      <PokemonItem value={pokemonState.searchedPokemon}></PokemonItem>
+    </>
+  ) : pokemonState.pokemons ? (
     <>
       {pokemonState.pokemons.map((pokemon, index) => {
         return <PokemonItem key={index} value={pokemon} />;
       })}
     </>
   ) : (
-    <div>
-      <p>No Pokemons to list</p>
-    </div>
+    <p>no pokemons</p>
   );
 };
 

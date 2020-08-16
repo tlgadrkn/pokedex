@@ -26,7 +26,14 @@ export const NavbarItems = styled.div`
 export const NavbarInputGroup = styled.div`
   align-self: center;
   display: flex;
+  width: 100%;
+  justify-content: stretch;
+`;
+export const NavbarForm = styled.form`
+  align-self: center;
+  display: flex;
   width: 50%;
+  border: 1px solid black;
   justify-content: stretch;
 `;
 
@@ -38,10 +45,8 @@ export const NavbarButton = styled.button`
   border: 1px solid #8095ff;
   padding: 0.75rem 0.5rem;
   background: #fff;
-  position: fixed;
-  top: 0;
-  right: 0;
-  z-index: 9999;
+  /* position: fixed; */
+  /* z-index: 9999; */
   &:hover {
     background: transparent;
     transition: background ease-in-out 0.2s;
