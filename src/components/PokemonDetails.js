@@ -5,8 +5,9 @@ import {
   PokemonHeader,
   PokemonImg,
   SpanButton,
+  PokemonDetailsDiv,
 } from "../assets/PokemonDetails";
-import { CardSpan } from "../assets/Card";
+import { Card, CardSpan } from "../assets/Card";
 import { capitalizeFirstLetter } from "../utils/helperFunctions";
 
 function PokemonDetails() {
@@ -25,9 +26,9 @@ function PokemonDetails() {
           alt={location.pokemon.value.name}
         />
 
-        <div className="pokemon-details">
+        <PokemonDetailsDiv>
+          <h3>Types:</h3>
           <p>
-            Types:{" "}
             {location.pokemon.value.types.map((type, index) => {
               return (
                 <CardSpan key={index} type={type.type.name}>
@@ -38,14 +39,13 @@ function PokemonDetails() {
           </p>
           <p>Height: {location.pokemon.value.height}</p>
           <p>Weight: {location.pokemon.value.weight}</p>
-        </div>
-
-        <div className="abilities-section">
+        </PokemonDetailsDiv>
+        <PokemonDetailsDiv>
           <h3>Abilities</h3>
           {location.pokemon.value.abilities.map((value, index) => {
             return <SpanButton key={index}>{value.ability.name}</SpanButton>;
           })}
-        </div>
+        </PokemonDetailsDiv>
       </PokemonWrapper>
     </>
   ) : (

@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const PokemonWrapper = styled.div`
   display: flex;
+  height: 81.5vh;
   padding: 1rem;
   /* flex-direction: column; */
   justify-content: space-between;
@@ -18,26 +19,34 @@ export const PokemonWrapper = styled.div`
 
 export const PokemonHeader = styled.div`
   text-align: center;
+  margin-bottom: 4rem;
+  font-weight: bold;
 `;
 export const PokemonImg = styled.img`
   height: 20rem;
   flex: 0 10rem;
 `;
-export const PokemonDetails = styled.div`
-  flex: 1 30rem;
+export const PokemonDetailsDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  justify-items: center;
+  background-color: #fff;
+  border-radius: 1rem;
+  flex: 1;
+  height: 30vh;
+  padding: 1rem;
+  margin: 1rem;
+`;
+export const p = styled.p`
+  font-weight: 400;
 `;
 export const SpanButton = styled.span`
   border: none;
-  padding: 1rem 1.5rem;
+  padding: 0.5rem;
   text-align: center;
   text-decoration: none;
   margin: 1rem;
   transition-duration: 0.4s;
-  background-color: rgba(0, 0, 0, 0.1);
-  border: 2px solid #008cba;
-  cursor: pointer;
-  &:hover {
-    background-color: #008cba;
-    color: white;
-  }
+  border: 1px solid #008cba;
+  border-radius: 1rem;
 `;
