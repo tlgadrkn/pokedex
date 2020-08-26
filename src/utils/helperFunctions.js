@@ -23,8 +23,6 @@ export const setSpanColor = (pokemonType) => {
     ghost: "#ECF0F1 ",
     dragon: "#B03A2E",
   };
-  if (!Object.keys(pokemonType)) {
-    return "#333";
-  }
+  if (!Object.keys(pokemonType)) return "#333";
   return backgroundColors[pokemonType];
 };

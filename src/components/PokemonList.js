@@ -43,7 +43,7 @@ const PokemonList = () => {
       })}
     </>
   ) : (
-    <p>no pokemons</p>
+    <p>Loading Pokemons...</p>
   );
 };
 
