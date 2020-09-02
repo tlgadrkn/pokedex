@@ -2,20 +2,15 @@ import styled from "styled-components";
 
 export const PokemonWrapper = styled.div`
   display: flex;
+  min-height: 86.8vh;
   flex-wrap: wrap;
-  height: 81.5vh;
   padding: 1rem;
-  /* flex-direction: column; */
   justify-content: space-around;
-  background-image: linear-gradient(0deg, #d9afd9 0%, #97d9e1 100%);
+  /* background-image: linear-gradient(0deg, #d9afd9 0%, #97d9e1 100%); */
   background-repeat: no-repeat;
-  /* box-shadow: 0px 4px 8px 0 rgb(206, 205, 205); */
   transition: 0.3s;
   overflow: hidden;
   border-radius: 5px;
-  &:hover {
-    /* box-shadow: 0 8px 6px -6px black; */
-  }
 `;
 
 export const PokemonHeader = styled.div`
@@ -25,7 +20,7 @@ export const PokemonHeader = styled.div`
 `;
 export const PokemonImg = styled.img`
   /* height: 100%; */
-  max-width: 40%;
+  max-width: 30%;
   flex: 0 10rem;
   object-fit: contain;
 `;
@@ -34,21 +29,21 @@ export const PokemonDetailsDiv = styled.div`
   flex-wrap: wrap;
   justify-content: space-between;
   /* justify-items: space-between; */
-  flex-direction: column;
   background-color: #fff;
   border-radius: 1rem;
   height: 30vh;
   padding: 2rem;
   margin: 1rem;
+  width: 20rem;
   max-width: 50%;
 `;
 export const PokemonDetailsContainer = styled.div`
   display: flex;
+  justify-content: center;
+  justify-items: center;
   flex: 1;
   flex-wrap: wrap;
   border-radius: 1rem;
-  border: 1px solid black;
-  /* max-width: 50%; */
 `;
 export const PokemonAttributesDiv = styled.div`
   display: flex;
@@ -58,27 +53,41 @@ export const PokemonAttributesDiv = styled.div`
 export const Paragraph = styled.p`
   font-weight: 400;
 `;
-export const SpanButton = styled.span`
+export const Button = styled.button`
   border: none;
-  padding: 0rem 0.2rem;
+  padding: 0.5rem 1rem;
+  background-color: #fff;
   text-align: center;
+  height: 2rem;
+  margin: 1rem;
+  border-radius: 1rem;
+  cursor: pointer;
 `;
 
 export const StatsBarWrapper = styled.div`
-  width: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 65%;
+  background-color: #fff;
+  border-radius: 1rem;
+  padding: 0.2rem;
 `;
 export const ProgressBar = styled.div`
   width: 100%;
   background-color: #e0e0e0;
-  padding: 3px;
+  padding: 1px;
+  margin: 0.1rem;
   border-radius: 3px;
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
 `;
 export const ProgressBarFill = styled.span`
   display: block;
-  height: 12px;
+  height: 1.2rem;
   background-color: #659cef;
-  border-radius: 3px;
+  border-radius: 2px;
   width: ${(props) => (props.width > 100 ? `${100}%` : `${props.width}%`)};
   transition: width 3s ease-in;
+  span {
+    padding: 0rem 1rem;
+  }
 `;

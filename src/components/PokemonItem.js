@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { ThemeContext } from "../context/ThemeContext";
 import { capitalizeFirstLetter } from "../utils/helperFunctions";

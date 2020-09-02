@@ -1,5 +1,5 @@
 import React from "react";
-import { useLocation, Redirect } from "react-router-dom";
+import { useLocation, Redirect, Link, useHistory } from "react-router-dom";
 import {
   PokemonWrapper,
   PokemonHeader,
@@ -10,16 +10,14 @@ import {
   StatsBarWrapper,
   ProgressBar,
   ProgressBarFill,
+  Button,
 } from "../assets/PokemonDetails";
 import { Card, CardSpan } from "../assets/Card";
-import {
-  capitalizeFirstLetter,
-  getPokemonEvolutionData,
-} from "../utils/helperFunctions";
+import { capitalizeFirstLetter } from "../utils/helperFunctions";
 
 function PokemonDetails() {
   const location = useLocation();
-
+  let history = useHistory();
   return location.pokemon ? (
     <>
       <PokemonHeader>
@@ -28,6 +26,8 @@ function PokemonDetails() {
         }`}</h1>
       </PokemonHeader>
       <PokemonWrapper>
+        <Button onClick={() => history.push("/")}>Go Back</Button>
+
         <PokemonImg
           src={`https://pokeres.bastionbot.org/images/pokemon/${location.pokemon.value.id}.png`}
           alt={location.pokemon.value.name}
