@@ -63,3 +63,22 @@ export const SpanButton = styled.span`
   padding: 0rem 0.2rem;
   text-align: center;
 `;
+
+export const StatsBarWrapper = styled.div`
+  width: 70%;
+`;
+export const ProgressBar = styled.div`
+  width: 100%;
+  background-color: #e0e0e0;
+  padding: 3px;
+  border-radius: 3px;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+`;
+export const ProgressBarFill = styled.span`
+  display: block;
+  height: 12px;
+  background-color: #659cef;
+  border-radius: 3px;
+  width: ${(props) => (props.width > 100 ? `${100}%` : `${props.width}%`)};
+  transition: width 3s ease-in;
+`;

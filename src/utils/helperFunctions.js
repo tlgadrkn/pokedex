@@ -1,3 +1,5 @@
+import { fetchDataFrom } from "./fetchApi";
+
 export const capitalizeFirstLetter = (textToCapitalize) => {
   const firstLetter = textToCapitalize.charAt(0).toUpperCase();
   return textToCapitalize.replace(firstLetter.toLowerCase(), firstLetter);

@@ -1,17 +1,21 @@
-import React, { useState } from "react";
+import React from "react";
 import { useLocation, Redirect } from "react-router-dom";
 import {
   PokemonWrapper,
   PokemonHeader,
   PokemonImg,
-  SpanButton,
   PokemonDetailsDiv,
   Paragraph,
-  PokemonAttributesDiv,
   PokemonDetailsContainer,
+  StatsBarWrapper,
+  ProgressBar,
+  ProgressBarFill,
 } from "../assets/PokemonDetails";
 import { Card, CardSpan } from "../assets/Card";
-import { capitalizeFirstLetter } from "../utils/helperFunctions";
+import {
+  capitalizeFirstLetter,
+  getPokemonEvolutionData,
+} from "../utils/helperFunctions";
 
 function PokemonDetails() {
   const location = useLocation();
@@ -47,9 +51,23 @@ function PokemonDetails() {
           <PokemonDetailsDiv>
             <h3>Abilities:</h3>
             {location.pokemon.value.abilities.map((value, index) => {
-              return <SpanButton key={index}>{value.ability.name}</SpanButton>;
+              return <Paragraph key={index}>{value.ability.name}</Paragraph>;
             })}
           </PokemonDetailsDiv>
+          <StatsBarWrapper>
+            {location.pokemon.value.stats.map((value, index) => {
+              return (
+                <>
+                  <ProgressBar key={index}>
+                    <ProgressBarFill key={index} width={value.base_stat}>
+                      {" "}
+                      <span>{value.stat.name}</span>
+                    </ProgressBarFill>
+                  </ProgressBar>
+                </>
+              );
+            })}
+          </StatsBarWrapper>
         </PokemonDetailsContainer>
       </PokemonWrapper>
     </>
