@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { setSpanColor } from "../utils/helperFunctions";
+import styled from 'styled-components';
+import { setSpanColor } from '../utils/helperFunctions';
 export const Card = styled.div`
   display: flex;
   padding: 1rem;
@@ -10,6 +10,8 @@ export const Card = styled.div`
   transition: 0.3s;
   overflow: hidden;
   border-radius: 5px;
+  min-width: 10rem;
+  max-width: 20rem;
   &:hover {
     box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.2);
   }

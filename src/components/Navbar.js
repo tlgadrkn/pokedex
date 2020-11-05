@@ -1,6 +1,6 @@
-import React, { useContext } from "react";
-import { PokemonContext } from "../context/PokemonContext";
-import { Link } from "react-router-dom";
+import React, { useContext, useEffect, useState } from 'react';
+import { PokemonContext } from '../context/PokemonContext';
+import { Link } from 'react-router-dom';
 import {
   Nav,
   NavbarButton,
@@ -11,22 +11,22 @@ import {
   NavbarInputGroup,
   NavbarInputButton,
   NavbarForm,
-} from "../assets/Nav";
-import { MdSearch } from "react-icons/md";
+} from '../assets/Nav';
+import { MdSearch } from 'react-icons/md';
 
 const Navbar = () => {
   const { isLoading, dispatch } = useContext(PokemonContext);
-  const validateForm = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    const value = document.querySelector("#search-pokemons");
+    const value = document.querySelector('#search-pokemons');
     console.log(value.value);
     !value.value
-      ? alert("please enter a pokemon name")
+      ? alert('please enter a pokemon name')
       : dispatch({
-          type: "SEARCH_POKEMONS",
+          type: 'SEARCH_POKEMONS',
           payload: value.value.toLowerCase(),
         });
-    value.value = "";
+    value.value = '';
   };
 
   return (
@@ -35,22 +35,23 @@ const Navbar = () => {
         <h2>PokeDex</h2>
       </NavLogo>
       <NavbarItems>
-        <NavbarForm onSubmit={(e) => validateForm(e)}>
+        <NavbarForm onSubmit={(e) => handleSubmit(e)}>
           <NavbarInputGroup>
-            <NavbarLabel htmlFor="search-pokemons">Search by Name:</NavbarLabel>
+            <NavbarLabel htmlFor='search-pokemons'>Search by Name:</NavbarLabel>
             <NavbarInput
-              type="text"
-              name="search-pokemons"
-              id="search-pokemons"
-              autoComplete="off"
-              spellCheck="false"
+              type='text'
+              name='search-pokemons'
+              id='search-pokemons'
+              autoComplete='off'
+              placeholder='Try pikachu...'
+              spellCheck='false'
             ></NavbarInput>
             <NavbarInputButton>
               <MdSearch />
             </NavbarInputButton>
           </NavbarInputGroup>
         </NavbarForm>
-        <NavbarButton onClick={() => dispatch({ type: "LOAD_MORE_POKEMONS" })}>
+        <NavbarButton onClick={() => dispatch({ type: 'LOAD_MORE_POKEMONS' })}>
           Load More Pokemons
         </NavbarButton>
       </NavbarItems>

@@ -1,25 +1,16 @@
-import React from "react";
+import React from 'react';
+import { PokemonContext } from '../context/PokemonContext';
 
-const Pagination = () => {
+const Pagination = (previousState) => {
+  const { pokemons, dispatch } = React.useContext(PokemonContext);
+
   return (
-    <ul className="flex list-reset border border-grey-light rounded font-sans my-4">
-      <li>
-        <a
-          className="block hover:text-white hover:bg-blue text-blue border-r border-grey-light px-3 py-2"
-          href="#"
-        >
-          Previous
-        </a>
-      </li>
-      <li>
-        <a
-          className="block hover:text-white hover:bg-blue text-blue px-3 py-2"
-          href="#"
-        >
-          Next
-        </a>
-      </li>
-    </ul>
+    <div className='pagination'>
+      <button disabled={previousState}>&laquo;</button>
+      <button onClick={() => dispatch({ type: 'LOAD_MORE_POKEMONS' })}>
+        &raquo;
+      </button>
+    </div>
   );
 };
 

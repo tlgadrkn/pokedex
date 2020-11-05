@@ -1,5 +1,5 @@
-import React from "react";
-import { useLocation, Redirect, Link, useHistory } from "react-router-dom";
+import React from 'react';
+import { useLocation, Redirect, Link, useHistory } from 'react-router-dom';
 import {
   PokemonWrapper,
   PokemonHeader,
@@ -11,9 +11,9 @@ import {
   ProgressBar,
   ProgressBarFill,
   Button,
-} from "../assets/PokemonDetails";
-import { Card, CardSpan } from "../assets/Card";
-import { capitalizeFirstLetter } from "../utils/helperFunctions";
+} from '../assets/PokemonDetails';
+import { Card, CardSpan } from '../assets/Card';
+import { capitalizeFirstLetter } from '../utils/helperFunctions';
 
 function PokemonDetails() {
   const location = useLocation();
@@ -26,7 +26,7 @@ function PokemonDetails() {
         }`}</h1>
       </PokemonHeader>
       <PokemonWrapper>
-        <Button onClick={() => history.push("/")}>Go Back</Button>
+        <Button onClick={() => history.push('/')}>Go Back</Button>
 
         <PokemonImg
           src={`https://pokeres.bastionbot.org/images/pokemon/${location.pokemon.value.id}.png`}
@@ -57,14 +57,14 @@ function PokemonDetails() {
           <StatsBarWrapper>
             {location.pokemon.value.stats.map((value, index) => {
               return (
-                <>
+                <div>
                   <ProgressBar key={index}>
                     <ProgressBarFill key={index} width={value.base_stat}>
-                      {" "}
+                      {' '}
                       <span>{value.stat.name}</span>
                     </ProgressBarFill>
                   </ProgressBar>
-                </>
+                </div>
               );
             })}
           </StatsBarWrapper>
@@ -72,7 +72,7 @@ function PokemonDetails() {
       </PokemonWrapper>
     </>
   ) : (
-    <Redirect to="/" />
+    <Redirect to='/' />
   );
 }
 

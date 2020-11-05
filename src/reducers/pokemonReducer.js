@@ -1,46 +1,45 @@
-import { fetchDataFrom } from "../utils/fetchApi";
-const POKEMON_API = "https://pokeapi.co/api/v2/pokemon/?offset=0&limit=20";
-const SPECIFIC_POKEMON_API = "https://pokeapi.co/api/v2/pokemon/";
+import { fetchDataFrom } from '../utils/fetchApi';
+const POKEMON_API = 'https://pokeapi.co/api/v2/pokemon/?offset=0&limit=50';
+const SPECIFIC_POKEMON_API = 'https://pokeapi.co/api/v2/pokemon/';
 
 export const pokemonReducer = async (state, action) => {
+  // const pokemonLimit = 50;
   console.log(action);
   switch (action.type) {
-    case "LOAD_STATE":
+    case 'LOAD_STATE':
       async function getPokemons(url) {
         try {
           let response = await fetchDataFrom(url);
-          // console.log(response);
-          // return response;
           let allPokemons = [];
+          let pageAmount = 0;
           for await (let pokemon of response.results) {
             let temp = await fetchDataFrom(pokemon.url);
             allPokemons.push(temp);
           }
-          console.log(allPokemons);
+          (function calculatePageAmount() {
+            pageAmount = response.count / 50;
+          })();
           return {
-            pokemons: await allPokemons,
+            pageAmount,
+            pokemons: allPokemons,
             searchedPokemon: null,
-            next: await response.next,
-            previous: await response.previous,
+            next: response.next,
+            previous: response.previous,
           };
         } catch (error) {
           console.log(`fetch error - ${error}`);
         }
       }
       return getPokemons(POKEMON_API).then((data) => {
-        // console.log(data);
         return data;
       });
 
-    case "SEARCH_POKEMONS":
+    case 'SEARCH_POKEMONS':
       try {
         let loadedState = await state;
         let response = await fetchDataFrom(
           `${SPECIFIC_POKEMON_API}${action.payload}`
         );
-        console.log(action.payload);
-        console.log(response);
-        console.log(state);
         return {
           next: loadedState.next,
           pokemons: [...loadedState.pokemons],
@@ -51,12 +50,10 @@ export const pokemonReducer = async (state, action) => {
         console.log(`fetch error - ${error}`);
         return state;
       }
-    case "LOAD_MORE_POKEMONS":
+    case 'LOAD_MORE_POKEMONS':
       try {
         async function checkPromise() {
           let loadedState = await state;
-          console.log(`LOADED STATE ${loadedState}`);
-
           let res = await getPokemons(loadedState.next);
 
           return {

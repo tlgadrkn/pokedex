@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const PokemonWrapper = styled.div`
   display: flex;
@@ -6,7 +6,6 @@ export const PokemonWrapper = styled.div`
   flex-wrap: wrap;
   padding: 1rem;
   justify-content: space-around;
-  /* background-image: linear-gradient(0deg, #d9afd9 0%, #97d9e1 100%); */
   background-repeat: no-repeat;
   transition: 0.3s;
   overflow: hidden;
@@ -14,8 +13,9 @@ export const PokemonWrapper = styled.div`
 `;
 
 export const PokemonHeader = styled.div`
+  height: 5rem;
   text-align: center;
-  margin: 2rem 0rem;
+  margin: 1rem 0rem;
   font-weight: bold;
 `;
 export const PokemonImg = styled.img`
@@ -68,23 +68,23 @@ export const StatsBarWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 65%;
+  width: 75%;
   background-color: #fff;
   border-radius: 1rem;
-  padding: 0.2rem;
+  padding: 0.5rem;
 `;
 export const ProgressBar = styled.div`
   width: 100%;
   background-color: #e0e0e0;
   padding: 1px;
   margin: 0.1rem;
-  border-radius: 3px;
+  border-radius: 1rem;
 `;
 export const ProgressBarFill = styled.span`
   display: block;
   height: 1.2rem;
   background-color: #659cef;
-  border-radius: 2px;
+  border-radius: 1rem;
   width: ${(props) => (props.width > 100 ? `${100}%` : `${props.width}%`)};
   transition: width 3s ease-in;
   span {

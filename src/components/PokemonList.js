@@ -1,6 +1,7 @@
-import React, { useContext, useState, useEffect } from "react";
-import PokemonItem from "./PokemonItem";
-import { PokemonContext } from "../context/PokemonContext";
+import React, { useContext, useState, useEffect } from 'react';
+import PokemonItem from './PokemonItem';
+import { PokemonContext } from '../context/PokemonContext';
+import Pagination from './Pagination';
 
 const PokemonList = () => {
   const { pokemons } = useContext(PokemonContext);
@@ -16,21 +17,7 @@ const PokemonList = () => {
     }
 
     loadPokemonData();
-  }, [pokemons]);
-
-  // return pokemonState.pokemons ? (
-  //   <>
-  //     {pokemonState.pokemons.map((pokemon, index) => {
-  //       return <PokemonItem key={index} value={pokemon} />;
-  //     })}
-  //   </>
-  // ) : pokemonState.searchedPokemon ? (
-  //   <PokemonItem value={pokemonState.searchedPokemon}></PokemonItem>
-  // ) : (
-  //   <div>
-  //     <p>no pokemons to list</p>
-  //   </div>
-  // );
+  }, [pokemonState, pokemons]);
   console.log(Object.values(pokemonState));
   return pokemonState.searchedPokemon ? (
     <>
@@ -41,6 +28,9 @@ const PokemonList = () => {
       {pokemonState.pokemons.map((pokemon, index) => {
         return <PokemonItem key={index} value={pokemon} />;
       })}
+      <Pagination
+        previousState={pokemonState.pokemons.previous ? false : true}
+      />
     </>
   ) : (
     <p>Loading Pokemons...</p>

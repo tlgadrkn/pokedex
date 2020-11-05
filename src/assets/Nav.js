@@ -1,14 +1,14 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Nav = styled.nav`
-  height: 10rem;
+  height: 12rem;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   justify-items: center;
   padding: 1rem;
   color: #f1f1f1;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 `;
 export const NavLogo = styled.div`
   align-self: center;
@@ -17,7 +17,6 @@ export const NavLogo = styled.div`
   }
 `;
 export const NavbarItems = styled.div`
-  /* border: 1px solid black; */
   display: flex;
   width: 65%;
   justify-content: space-between;
@@ -33,7 +32,6 @@ export const NavbarForm = styled.form`
   align-self: center;
   display: flex;
   width: 50%;
-  border: 1px solid black;
   justify-content: stretch;
 `;
 
@@ -50,6 +48,8 @@ export const NavbarButton = styled.button`
   &:hover {
     background: transparent;
     transition: background ease-in-out 0.2s;
+    color: #fff;
+    border-color: #fff;
   }
 `;
 export const NavbarInputButton = styled.button`
@@ -65,6 +65,8 @@ export const NavbarInputButton = styled.button`
   &:hover {
     background: transparent;
     transition: background ease-in-out 0.2s;
+    color: #fff;
+    border-color: #fff;
   }
 `;
 export const NavbarLabel = styled.label`
