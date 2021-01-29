@@ -7,10 +7,21 @@ import { ThemeContext } from '../context/ThemeContext';
 import { Container } from '../assets/Container';
 import { GridParent } from '../assets/Grid';
 import Loader from 'react-loader-spinner';
-
+import { useAsync } from '../customHooks/useAsync';
+import { fetchDataFrom } from '../utils/fetchApi';
 const Home = (props) => {
+  const POKEMON_API = 'https://pokeapi.co/api/v2/pokemon/?offset=20&limit=20';
+
   const { isLoading, dispatch } = useContext(PokemonContext);
+  const state = useAsync(() => {
+    if (!isLoading) {
+      return;
+    }
+    return fetchDataFrom(POKEMON_API);
+  });
+  console.log('state', state);
   console.log(isLoading);
+
   const { themeState } = useContext(ThemeContext);
   return !isLoading ? (
     <main>
